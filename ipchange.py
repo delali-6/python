@@ -6,7 +6,6 @@ import os
 import sys
 import platform
 import socket
-import requests
 import logging
 from datetime import datetime
 from selenium import webdriver
