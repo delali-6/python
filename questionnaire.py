@@ -7,30 +7,30 @@ size = input("""What size pizza would you like?
              - small 
              - medium 
              - large) """)
-while size.lower() not in ["small", "medium", "large"]:
+while size.lower() not in ["small", "medium", "large", "s", "m", "l", "S", "M", "L"]:
     print ("Invalid input. Please enter 'small', 'medium', or 'large'.")
     size = input("""What size pizza would you like? 
              - small 
              - medium 
              - large) """)
-if size.lower() == "small":
+if size.lower() in ["small", "s", "S"]:
     price += 6
-elif size.lower() == "medium":
+elif size.lower() in ["medium", "m", "M"]:
     price += 8
 else:    price += 10
 base = input("""Choose your base: 
              - Classic crust....+ £0
              - Thin & crispy....+ £1
              - Deep pan....+ £2) """)
-while base.lower() not in ["classic crust", "thin & crispy", "deep pan"]:
+while base.lower() not in ["classic crust", "thin & crispy", "deep pan", "classic", "thin", "deep", "c", "t", "d", "C", "T", "D"]:
     print ("Invalid input. Please enter 'classic crust', 'thin & crispy', or 'deep pan'.")
     base = input("""Choose your base: 
              - Classic crust....+ £0
              - Thin & crispy....+ £1
              - Deep pan....+ £2) """)
-if base.lower() == "classic crust":
+if base.lower() in ["classic crust", "classic", "c", "C"]:
     price += 0
-elif base.lower() == "thin & crispy":
+elif base.lower() in ["thin & crispy", "thin", "t", "T"]:
     price += 1
 else:    price += 2
 toppings = input("How many toppings would you like? Each topping is + £1.50 ")
@@ -38,12 +38,12 @@ price += int(toppings) * 1.5
 eatinOrTakeaway = input("""Would you like to eat in or take away? 
                         - Eat in....+ £2 Service
                         - Take away....+ £0) """)
-while eatinOrTakeaway.lower() not in ["eat in", "take away"]:
+while eatinOrTakeaway.lower() not in ["eat in", "take away", "1", "2", "E", "T"]:
     print ("Invalid input. Please enter 'eat in' or 'take away'.")
     eatinOrTakeaway = input("""Would you like to eat in or take away? 
                         - Eat in....+ £2 Service
                         - Take away....+ £0) """)
-if eatinOrTakeaway.lower() == "eat in":
+if eatinOrTakeaway.lower() in ["eat in", "1", "E"]:
     price += 2
 else:    price += 0
 print ("""Thank you for your order! Here is a summary of your pizza order:
@@ -61,6 +61,17 @@ if discount.lower() == "yes":
         print ("Congratulations! You have received a 20% discount. Your new total price is: £" + str(price))
     else:
         print ("Sorry, that discount code is not valid.")
+        invalid_code = input("Would you like to try again? (yes or no) ")
+        if invalid_code.lower() == "yes":
+            code = input("Please enter your discount code: ")
+            if code == "PIZZA10":
+                price = price - price*0.2
+                print ("Congratulations! You have received a 20% discount. Your new total price is: £" + str(price))
+            else:
+                print ("Sorry, that discount code is not valid. No discount will be applied to your order.")
+                print ("Your final total price is: £" + str(price))
+        else:
+            print ("No discount will be applied to your order. Your final total price is: £" + str(price))
 if eatinOrTakeaway.lower() == "eat in":
     print ("Your order will be ready shortly. Please wait at your table and a server will bring it to you.")
 else:
